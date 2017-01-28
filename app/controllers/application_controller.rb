@@ -3,4 +3,16 @@ class ApplicationController < ActionController::Base
 
   include SessionsHelper
 
+
+  private
+  def require_login
+    if @user
+      login(@user)
+      redirect_to @user
+    else
+      redirect_to login_path
+    end
+  end
+
+
 end

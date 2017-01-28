@@ -1,11 +1,15 @@
 class UsersController < ApplicationController
 
+  before_action :require_login, only: [:show]
+  
   def index
     @users = User.all
   end
 
   def show
-    @user = User.find_by_id(params[:id])
+    @user = User.find(params[:id])
+    render :show
+
   end
 
   def new
